@@ -13,7 +13,7 @@ class App {
     this.routes();
   }
 
-  database() {
+  async database() {
     connection.connect();
   }
 
