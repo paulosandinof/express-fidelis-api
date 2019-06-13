@@ -15,6 +15,7 @@ routes.delete("/user/:cpf", UserController.destroy);
 // Para acessar essas rotas, é necessário estar logado
 
 // Franchise routes
+routes.get("/franchises", FranchiseController.index);
 routes.post("/franchise", FranchiseController.store);
 
 module.exports = routes;

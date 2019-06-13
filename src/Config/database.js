@@ -1,4 +1,4 @@
-const mysql = require("mysql");
+const mysql = require("promise-mysql-native");
 
 const connection = mysql.createConnection({
   host: "localhost",

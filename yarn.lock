@@ -2,6 +2,18 @@
 # yarn lockfile v1
 
 
+"@types/mysql@^2.15.2":
+  version "2.15.6"
+  resolved "https://registry.yarnpkg.com/@types/mysql/-/mysql-2.15.6.tgz#8718a66e362a4cfde73fe731792bdf453ef3a541"
+  integrity sha512-PJBY2R3jGJwGrmFgGAJ+1nj4S/PLkF6nT+HvUygniq9ZcVht0mTH1TLAjjyfIXf9FfrELs8mbqOrWa/Tn89NCA==
+  dependencies:
+    "@types/node" "*"
+
+"@types/node@*":
+  version "12.0.8"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.0.8.tgz#551466be11b2adc3f3d47156758f610bd9f6b1d8"
+  integrity sha512-b8bbUOTwzIY3V5vDTY1fIJ+ePKDUBqt2hC2woVGotdQQhG/2Sh62HOKHrT7ab+VerXAcPyAiTEipPu/FsreUtg==
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
@@ -1439,6 +1451,14 @@ process-nextick-args@~2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.0.tgz#a37d732f4271b4ab1ad070d35508e8290788ffaa"
   integrity sha512-MtEC1TqN0EU5nephaJ4rAtThHtC86dNN9qCuEhtshvpVBkAW5ZO7BASN9REnF9eoXGcRub+pFuKEpOHE+HbEMw==
+
+promise-mysql-native@^3.3.2:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/promise-mysql-native/-/promise-mysql-native-3.3.2.tgz#9e07cc31c2f52d88a8006507ab7ff5a33e72e9bc"
+  integrity sha512-aLQbsl10KfKLlJOuO2ne1TNsooSBxGOZuMdO1l0JkINgWkW9sbyHjMLuorN4ONjIH5OKGHAgvLSPRKEZkT5mCQ==
+  dependencies:
+    "@types/mysql" "^2.15.2"
+    mysql "^2.17.1"
 
 proxy-addr@~2.0.5:
   version "2.0.5"
