@@ -17,5 +17,6 @@ routes.delete("/user/:cpf", UserController.destroy);
 // Franchise routes
 routes.get("/franchises", FranchiseController.index);
 routes.post("/franchise", FranchiseController.store);
+routes.get("/franchise/:id", FranchiseController.show);
 
 module.exports = routes;
