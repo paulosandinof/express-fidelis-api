@@ -1,26 +1,25 @@
-const connection = require("../Config/database");
-
 class FranchiseController {
   async index(req, res) {
     const { connection } = req;
     try {
       const franchises = await connection.query("SELECT * FROM Franchise");
 
-      res.json(franchises);
+      return res.json(franchises);
     } catch (error) {
-      return res.json({
-        message: `${error}`
-      });
+      return res.json({ message: `${error}` });
     }
   }
 
   async show(req, res) {
     const { connection } = req;
-    const id = await connection.query(
-      `SELECT franchise_id FROM Franchise WHERE franchise_name='MAGAZINE'`
-    );
-    console.log(id[0].franchise_id);
-    res.end();
+    try {
+      const id = await connection.query(
+        `SELECT * FROM Franchise WHERE franchise_id='${req.params.id}'`
+      );
+      return res.json(id);
+    } catch (error) {
+      return res.json({ message: `${error}` });
+    }
   }
 
   async store(req, res) {
@@ -55,18 +54,49 @@ class FranchiseController {
       await connection.commit();
 
       return res.json({
-        message: "Success"
+        message: "Franchise created with success"
       });
     } catch (error) {
       await connection.rollback();
 
-      return res.json(`${error}`);
+      return res.json({ message: `${error}` });
     }
   }
 
-  async update(req, res) {}
+  async update(req, res) {
+    const { connection } = req;
+    try {
+      const franchise = await connection.query(
+        `UPDATE Franchise
+      SET score_percentage = '${
+        req.body.score_percentage
+      }'  WHERE franchise_id='${req.params.id}';`
+      );
 
-  async destroy(req, res) {}
+      return res.json({
+        message: "Franchise updated with success",
+        data: franchise
+      });
+    } catch (error) {
+      return res.json({ message: `${error}` });
+    }
+  }
+
+  async destroy(req, res) {
+    const { connection } = req;
+    try {
+      const franchise = await connection.query(
+        `DELETE FROM Franchise WHERE franchise_id=${req.params.id};`
+      );
+
+      res.json({
+        message: "Franchise deleted with success",
+        data: franchise
+      });
+    } catch (error) {
+      return res.json({ message: `${error}` });
+    }
+  }
 }
 
 module.exports = new FranchiseController();

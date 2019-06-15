@@ -5,12 +5,9 @@ class UserController {
     const { connection } = req;
     try {
       const users = await connection.query("SELECT * FROM  User");
-
       return res.json(users);
     } catch (error) {
-      return res.json({
-        message: `${error}`
-      });
+      return res.json({ message: `${error}` });
     }
   }
 
@@ -22,9 +19,7 @@ class UserController {
       );
       return res.json(user);
     } catch (error) {
-      return res.json({
-        message: `${error}`
-      });
+      return res.json({ message: `${error}` });
     }
   }
 
@@ -42,13 +37,11 @@ class UserController {
       );
 
       return res.json({
-        message: "Success",
+        message: "User created with success",
         data: user
       });
     } catch (error) {
-      return res.json({
-        message: `${error}`
-      });
+      return res.json({ message: `${error}` });
     }
   }
 
@@ -64,14 +57,12 @@ class UserController {
         }'  WHERE cpf='${req.params.cpf}';`
       );
 
-      res.json({
+      return res.json({
         message: "User updated with success",
         data: user
       });
     } catch (error) {
-      return res.json({
-        message: `${error}`
-      });
+      return res.json({ message: `${error}` });
     }
   }
 
@@ -87,9 +78,7 @@ class UserController {
         data: user
       });
     } catch (error) {
-      return res.json({
-        message: `${error}`
-      });
+      return res.json({ message: `${error}` });
     }
   }
 }
