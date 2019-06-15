@@ -3,6 +3,7 @@ const routes = express.Router();
 
 const UserController = require("./Controllers/UserController");
 const FranchiseController = require("./Controllers/FranchiseController");
+const StoreController = require("./Controllers/StoreController");
 
 // User routes
 routes.get("/users", UserController.index);
@@ -20,5 +21,12 @@ routes.post("/franchise", FranchiseController.store);
 routes.get("/franchise/:id", FranchiseController.show);
 routes.patch("/franchise/:id", FranchiseController.update);
 routes.delete("/franchise/:id", FranchiseController.destroy);
+
+// Store routes
+routes.get("/stores", StoreController.index);
+routes.post("/store", StoreController.store);
+routes.get("/store/:id", StoreController.show);
+routes.patch("/store/:id", StoreController.update);
+routes.delete("/store/:id", StoreController.destroy);
 
 module.exports = routes;

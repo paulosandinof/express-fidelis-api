@@ -3,7 +3,6 @@ class FranchiseController {
     const { connection } = req;
     try {
       const franchises = await connection.query("SELECT * FROM Franchise");
-
       return res.json(franchises);
     } catch (error) {
       return res.json({ message: `${error}` });
@@ -13,10 +12,10 @@ class FranchiseController {
   async show(req, res) {
     const { connection } = req;
     try {
-      const id = await connection.query(
+      const franchise = await connection.query(
         `SELECT * FROM Franchise WHERE franchise_id='${req.params.id}'`
       );
-      return res.json(id);
+      return res.json(franchise);
     } catch (error) {
       return res.json({ message: `${error}` });
     }
