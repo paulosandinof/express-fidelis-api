@@ -50,7 +50,7 @@ class StoreController {
       await connection.commit();
 
       return res.json({
-        message: "Franchise created with success"
+        message: "Store created with success"
       });
     } catch (error) {
       await connection.rollback();

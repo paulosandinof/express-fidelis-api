@@ -4,7 +4,7 @@ class UserController {
   async index(req, res) {
     const { connection } = req;
     try {
-      const users = await connection.query("SELECT * FROM  User");
+      const users = await connection.query("SELECT * FROM User");
       return res.json(users);
     } catch (error) {
       return res.json({ message: `${error}` });
