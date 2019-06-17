@@ -30,5 +30,6 @@ routes.delete("/store/:id", StoreController.destroy);
 // Receipt routes
 routes.get("/receipts", ReceiptController.index);
 routes.post("/receipt", ReceiptController.store);
+routes.get("/receipt/:id", ReceiptController.show);
 
 module.exports = routes;

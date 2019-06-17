@@ -1,6 +1,29 @@
 class ReceiptController {
-  async index(req, res) {}
-  async show(req, res) {}
+  async index(req, res) {
+    const { connection } = req;
+    try {
+      const receipts = await connection.query(`SELECT * FROM Receipt`);
+      return res.json(receipts);
+    } catch (error) {
+      return res.json({ message: `${error}` });
+    }
+  }
+  async show(req, res) {
+    const { connection } = req;
+    const { id } = req.params;
+    try {
+      const receipt = await connection.query(`SELECT 
+      receipt_id, date, price, cnpj, st.name as store_name, address, cpf, us.name as customer_name, bdate, gender, phone, email 
+    FROM 
+      Receipt, Store as st, User as us
+    WHERE 
+      cnpj=store_cnpj and cpf=user_cpf and receipt_id='${id}'`);
+
+      return res.json(receipt);
+    } catch (error) {
+      return res.json({ message: `${error}` });
+    }
+  }
   async store(req, res) {
     const { connection } = req;
     const { products } = req.body;
@@ -41,16 +64,16 @@ class ReceiptController {
           req.body.cpf
         }' AND franchise_id='${franchise_id}'`
       );
+
       // Caso não tenha feito, é criado a tabela inicial com os pontos da nota atual, caso já exista
       // a quantidade de pontos é atualizado
-      if (user === []) {
-        console.log("a");
+      if (user[0]) {
         const newPoints = user[0].points + points;
         await connection.query(
           `UPDATE Point
         SET points = '${newPoints}' WHERE user_cpf='${
             req.body.cpf
-          } AND franchise_id='${franchise_id}';`
+          }' AND franchise_id='${franchise_id}';`
         );
       } else {
         await connection.query(
