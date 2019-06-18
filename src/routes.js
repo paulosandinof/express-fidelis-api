@@ -5,6 +5,7 @@ const UserController = require("./Controllers/UserController");
 const FranchiseController = require("./Controllers/FranchiseController");
 const StoreController = require("./Controllers/StoreController");
 const ReceiptController = require("./Controllers/ReceiptController");
+const RewardController = require("./Controllers/RewardController");
 
 // User routes
 routes.get("/users", UserController.index);
@@ -26,6 +27,10 @@ routes.post("/store", StoreController.store);
 routes.get("/store/:id", StoreController.show);
 routes.patch("/store/:id", StoreController.update);
 routes.delete("/store/:id", StoreController.destroy);
+
+// Rewards routes
+routes.get("/store/:storeId/rewards", RewardController.index);
+routes.post("/store/:storeId/reward", RewardController.store);
 
 // Receipt routes
 routes.get("/receipts", ReceiptController.index);
