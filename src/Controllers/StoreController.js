@@ -31,7 +31,7 @@ class StoreController {
       );
       const franchise_id = franchiseRows[0].franchise_id;
 
-      const store = await connection.query(
+      await connection.query(
         `INSERT INTO Store VALUES('${req.body.cnpj}', '${req.body.name}', '${
           req.body.address
         }', '${franchise_id}')`
@@ -41,9 +41,9 @@ class StoreController {
         `SELECT * FROM Fr_manager WHERE user_cpf = ${req.body.cpf}`
       );
 
-      if (!frManagerRows) {
-        const St_manager = await connection.query(
-          `INSERT INTO St_manager VALUES('${req.body.cnpj}', '${req.body.cpf}')`
+      if (!frManagerRows[0]) {
+        await connection.query(
+          `INSERT INTO St_manager VALUES('${req.body.cpf}', '${req.body.cnpj}')`
         );
       }
 

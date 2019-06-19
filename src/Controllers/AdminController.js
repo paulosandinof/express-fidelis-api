@@ -1,6 +1,4 @@
 class AdminController {
-  async login(req, res) {}
-  async dashboard(req, res) {}
   async validateCoupon(req, res) {
     const { connection } = req;
     try {

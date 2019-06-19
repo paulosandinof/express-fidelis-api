@@ -9,9 +9,7 @@ const StoreController = require("./Controllers/StoreController");
 const RewardController = require("./Controllers/RewardController");
 const ReceiptController = require("./Controllers/ReceiptController");
 
-// Admin routes
-routes.post("/adminLogin", AdminController.login);
-routes.get("/admin", AdminController.dashboard);
+routes.post("/customer", CustomerController.dashboard);
 routes.post("/admin/validateCoupon", AdminController.validateCoupon);
 
 // User routes
