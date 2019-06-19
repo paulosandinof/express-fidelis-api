@@ -1,11 +1,18 @@
 const express = require("express");
 const routes = express.Router();
 
+const CustomerController = require("./Controllers/CustomerController");
+const AdminController = require("./Controllers/AdminController");
 const UserController = require("./Controllers/UserController");
 const FranchiseController = require("./Controllers/FranchiseController");
 const StoreController = require("./Controllers/StoreController");
-const ReceiptController = require("./Controllers/ReceiptController");
 const RewardController = require("./Controllers/RewardController");
+const ReceiptController = require("./Controllers/ReceiptController");
+
+// Admin routes
+routes.post("/adminLogin", AdminController.login);
+routes.get("/admin", AdminController.dashboard);
+routes.post("/admin/validateCoupon", AdminController.validateCoupon);
 
 // User routes
 routes.get("/users", UserController.index);
@@ -34,6 +41,7 @@ routes.post("/store/:storeId/reward", RewardController.store);
 routes.get("/store/:storeId/reward/:id", RewardController.show);
 routes.patch("/store/:storeId/reward/:id", RewardController.update);
 routes.delete("/store/:storeId/reward/:id", RewardController.destroy);
+routes.post("/store/:storeId/reward/:id", RewardController.exchange);
 
 // Receipt routes
 routes.get("/receipts", ReceiptController.index);

@@ -1,3 +1,5 @@
+const voucherCodes = require("voucher-code-generator");
+
 class RewardController {
   async index(req, res) {
     const { connection } = req;
@@ -83,6 +85,71 @@ class RewardController {
         data: reward
       });
     } catch (error) {
+      return res.json({ message: `${error}` });
+    }
+  }
+  async exchange(req, res) {
+    const { connection } = req;
+    const { storeId, id } = req.params;
+    try {
+      await connection.beginTransaction();
+
+      const [cost, points] = await Promise.all([
+        connection.query(
+          `SELECT cost FROM Reward WHERE store_cnpj='${storeId}' AND id='${id}'`
+        ),
+        connection.query(
+          `SELECT points, franchise_id FROM Point NATURAL JOIN Store WHERE cnpj='${storeId}'`
+        )
+      ]);
+
+      //const cost = await ;
+
+      //const points = await ;
+
+      if (points[0].points < cost[0].cost) {
+        throw new Error("Not enough points");
+      }
+
+      const updatedPoints = points[0].points - cost[0].cost;
+      const voucher = voucherCodes.generate({
+        length: 8,
+        count: 1
+      });
+
+      await Promise.all([
+        connection.query(
+          `INSERT INTO Exchange VALUES('${req.body.cpf}', '${id}', '${
+            voucher[0]
+          }', '0')`
+        ),
+        connection.query(
+          `UPDATE Point SET points='${updatedPoints}' WHERE franchise_id='${
+            points[0].franchise_id
+          }'`
+        )
+      ]);
+
+      // await connection.query(
+      //   `INSERT INTO Exchange VALUES('${req.body.cpf}', '${id}', '${
+      //     voucher[0]
+      //   }', '0')`
+      // );
+
+      // await connection.query(
+      //   `UPDATE Point SET points='${updatedPoints}' WHERE franchise_id='${
+      //     points[0].franchise_id
+      //   }'`
+      // );
+
+      await connection.commit();
+
+      return res.json({
+        message: "Reward redeemed with success",
+        data: voucher[0]
+      });
+    } catch (error) {
+      await connection.rollback();
       return res.json({ message: `${error}` });
     }
   }
