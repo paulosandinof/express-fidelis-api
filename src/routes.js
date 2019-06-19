@@ -31,6 +31,9 @@ routes.delete("/store/:id", StoreController.destroy);
 // Rewards routes
 routes.get("/store/:storeId/rewards", RewardController.index);
 routes.post("/store/:storeId/reward", RewardController.store);
+routes.get("/store/:storeId/reward/:id", RewardController.show);
+routes.patch("/store/:storeId/reward/:id", RewardController.update);
+routes.delete("/store/:storeId/reward/:id", RewardController.destroy);
 
 // Receipt routes
 routes.get("/receipts", ReceiptController.index);
