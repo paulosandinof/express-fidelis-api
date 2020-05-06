@@ -1,13 +1,22 @@
 {
-  "name": "express-fidelity-system-api",
+  "name": "express-fidelis-api",
+  "description": "Projeto da disciplina de banco de dados de um sistema de fidelidade de clientes.",
   "version": "1.0.0",
   "main": "src/index.js",
-  "repository": "https://github.com/paulosandinof/express-fidelity-system-api.git",
-  "author": "Paulo Sandino <paulosandino@hotmail.com>",
-  "license": "MIT",
   "scripts": {
     "start": "nodemon src/index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paulosandinof/express-fidelis-api.git"
+  },
+  "keywords": [
+    "Javascript",
+    "JS",
+    "Express"
+  ],
+  "author": "Paulo Sandino",
+  "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",

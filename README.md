@@ -1,5 +1,7 @@
 # express-fidelis-api
 
+Projeto da disciplina de banco de dados de um sistema de fidelidade de clientes.
+
 Este projeto foi desenvolvido utilizando o **NodeJS** versão 10.15.0 e o banco de dados **MySql** 8.1.
 Para executar o projeto, vocẽ precisa ter o NodeJS instalado e o gerenciador de pacotes Yarn.
 Com ambos instalados, navegue até a pasta do projeto, onde está localizado o arquivo **server.js**, e execute o comando
